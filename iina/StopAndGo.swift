@@ -106,8 +106,7 @@ final class StopAndGo: NSWindowController, NSTableViewDataSource, NSTableViewDel
     }
     let item = NSMenuItem(title: "StopAndGo Library…", action: #selector(showLibrary), keyEquivalent: "")
     item.target = self
-    NSApp.mainMenu?.items.first(where: { $0.submenu?.identifier?.rawValue == "file" || $0.title == "File" })?
-      .submenu?.addItem(item)
+    AppDelegate.shared.menuController?.fileMenu?.addItem(item)
   }
 
   var isEnabled: Bool { settings.enabled }
@@ -170,6 +169,9 @@ final class StopAndGo: NSWindowController, NSTableViewDataSource, NSTableViewDel
   }
 
   func numberOfRows(in tableView: NSTableView) -> Int { items.count }
+  func tableViewSelectionDidChange(_ notification: Notification) {
+    if items.indices.contains(table.selectedRow) { selections[selectedTab] = table.selectedRow }
+  }
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
     let text = tableColumn?.identifier.rawValue == "title" ? items[row].displayTitle : items[row].details
     let label = NSTextField(labelWithString: text)

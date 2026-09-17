@@ -14,6 +14,10 @@ playback; up/down selects, Return or double-click plays, Tab/C switches movies
 and clips, R reloads, and Escape closes. The native table also supports page
 navigation. The last selection is retained for each tab.
 
+The IINA Library launcher sends `iina://stopandgo` to the fork so it opens the
+picker even while a movie is playing. Clicking the fork's Dock icon also brings
+up the picker, and File → StopAndGo Library opens it from inside IINA.
+
 During playback, 5 exports the preceding 15 seconds on the server and S uploads
 a PNG of the current frame including subtitles. Keys, clip duration, endpoints,
 tokens and request timeouts are configurable. Clip jobs are polled until

@@ -743,6 +743,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
     // once it has been instructed to shutdown can trigger a crash. MUST NOT permit
     // reopening once termination has started.
     guard !isTerminating else { return false }
+    if StopAndGo.shared.isEnabled {
+      StopAndGo.shared.showLibrary()
+      return true
+    }
     guard !flag else { return true }
     Logger.log("Handle reopen")
     showWelcomeWindow(checkingForUpdatedData: true)
@@ -883,6 +887,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
     
     // handle url scheme
     guard let host = parsed.host else { return }
+
+    if host == "stopandgo" {
+      StopAndGo.shared.showLibrary()
+      return
+    }
 
     if host == "open" || host == "weblink" {
       // open a file or link
