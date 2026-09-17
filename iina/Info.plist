@@ -605,7 +605,7 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
@@ -638,6 +638,12 @@
 	</array>
 	<key>SUFeedURL</key>
 	<string>https://www.iina.io/appcast.xml</string>
+	<key>StopAndGoIntegrationVersion</key>
+	<integer>1</integer>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
+	<key>StopAndGoFork</key>
+	<string>koushik255/iina</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUPublicEDKey</key>

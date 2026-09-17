@@ -385,6 +385,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
       parsePendingURL(url)
     }
 
+    StopAndGo.shared.install()
     if !commandLineStatus.isCommandLine {
       // check whether showing the welcome window after 0.1s
       Timer.scheduledTimer(timeInterval: TimeInterval(0.1), target: self, selector: #selector(self.checkForShowingInitialWindow), userInfo: nil, repeats: false)
@@ -450,6 +451,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
   }
 
   private func showWelcomeWindow(checkingForUpdatedData: Bool = false) {
+    if StopAndGo.shared.isEnabled {
+      StopAndGo.shared.showLibrary()
+      return
+    }
     let actionRawValue = Preference.integer(for: .actionAfterLaunch)
     let action: Preference.ActionAfterLaunch = Preference.ActionAfterLaunch(rawValue: actionRawValue) ?? .welcomeWindow
     switch action {
